@@ -56,12 +56,18 @@ const displayCategoryDetails = (data) => {
         return b.total_view - a.total_view;
     });
 
+    data.map((elements) => {
+        const {
+            title,
+            total_view,
+            thumbnail_url,
+            details,
+            author,
+            category_id,
+            _id,
+        } = elements;
 
-    data.forEach((elements) => {
-        const { title, total_view, thumbnail_url, details, author, category_id } =
-        elements;
-
-        // console.log(category_id);
+        // console.log(_id);
 
         const { name, img } = author;
         const showDetailsLimit = details.slice(0, 500).concat("...");
@@ -84,7 +90,7 @@ const displayCategoryDetails = (data) => {
                             <div>
                                 <img src="${
                                   img ? img : "No data Found"
-                                }" width="45 " alt="... " class="rounded d-inline-block align-middle " alt="... " />
+                                }" width="45 " alt="... " class="rounded img-fluid d-inline-block align-middle " alt="... " />
 
                                 <span class="fw-bold ">${
                                   name ? name : "No Name Found"
@@ -96,19 +102,67 @@ const displayCategoryDetails = (data) => {
                                   total_view ? total_view : "No data Found"
                                 }</span>
                             </div>
-                            <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" aria-label="Close">Show Details</button>
+                            <div>
+                            <button href="#" onClick="allCategoriesFullDetails(('${_id}'))" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
+                            </div>
+                                
                         </div>
 
                 </div>
             </div>
         `;
+
         // console.log(category_name);
         categoryDetailsField.appendChild(div);
         const spinnerItem = document.getElementById("spinner");
         spinnerItem.classList.add("d-none");
+        // let id = allCategoriesFullDetails(_id);
+        // console.log(id);
     });
 };
 
-// allCategories();
+const allCategoriesFullDetails = (news_id) => {
+    fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
+        .then((response) => response.json())
+        .then((json) => displayCategoryFullDetails(json.data));
+};
 
-// displayCategory();
+const displayCategoryFullDetails = (data) => {
+    // console.log(data[0]._id);
+
+    const newsDetails = document.getElementById("news-details");
+
+    data.forEach((element) => {
+        const { total_view, title, image_url, details, author } = element;
+        const { name, img, published_date } = author;
+        // console.log(title);
+        const newsTitle = document.getElementById("newsDetailsModalLabel");
+
+        newsTitle.innerHTML = ` <div class="fw-bold">Title: ${
+      title ? title : "No Title found"
+    }</div> `;
+
+        newsDetails.textContent = "";
+
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+                    <img class="img-fluid" src="${image_url}" alt="">
+                    <h4 class="mt-2">Author name : ${
+                      name ? name : "No name found"
+                    }</h4>
+                    <img src="${img}" width="45 " alt="">
+                     <div><small>Publish Date:${published_date}</small></div>
+                    <p>Total Views: ${
+                      total_view ? total_view : "No date found"
+                    } </p>
+                    <p>Description: ${details ? details : "No date found"} </p>
+    `;
+
+        newsDetails.appendChild(div);
+    });
+};
+
+// allCategories(08);
+
+displayCategory(08);
