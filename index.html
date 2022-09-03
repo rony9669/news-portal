@@ -35,7 +35,7 @@
                 <a class="nav-link fs-5" href="#about">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5" id="blog-section" href="#services">Blogs</a
+                    <a class="nav-link fs-5" id="blog-section" href="blog.html">Blogs</a
                 >
               </li>
               <li class="nav-item">
@@ -61,62 +61,15 @@
                 </div>
             </nav>
         </div>
-        <!-- Blog section -->
-        <div class="blog-section mt-5">
-            <div class="accordion accordion-flush d-none" id="accordion-section">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                1. What is the difference between Var, Let, and Const?
-              </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <span class="fw-bolder">Var:</span>1)var has the function or global scope.2)It gets hoisted to the top of its scope and initialized undefined.3)It can be updated or re-declared.4)It's an old way to declare a variable. <br />
-                            <span class="fw-bolder">Let:</span> 1)let have the block scope. 2)It also got hoisted to the top of its scope but didn't initialize. 3)It can only be updated and can't be re-declared.4)It's a new way to declare variables introduced
-                            in ES6. <br /><span class="fw-bolder">Const:</span> 1)const variable has the block scope. 2)It also got hoisted to the top of its scope but didn't initialize. 3)It can't be updated or re-declared. 4)It's also a new way to declare
-                            a variable, which introduces in ES6
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                2. Regular vs Arrow Function.
-              </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            In regular function, this value is dynamic, In arrow function it equals to this of the outer function. In regular function, arguments will give you list of parameter passed in function, In arrow function arguments is not defined. In regular function,
-                            you always have to return any value, but in Arrow function you can skip return keyword and write in single line. In arrow function parameters should be unique. Hoisting matters in arrow function as function get not be invoked
-                            before initialisations.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                3. Why you are using template string in Javascript?
-              </button>
-                    </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            Template strings are a powerful feature of modern JavaScript released in ES6. It lets us insert/interpolate variables and expressions into strings without needing to concatenate like in older versions of JavaScript. It allows us to create strings that
-                            are complex and contain dynamic elements. Another great thing that comes with template strings are tags. Tags are functions that take a string and the decomposed parts of the string as parameters and are great for converting
-                            strings to different entities.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- spinner section -->
-
-        <div class="text-center d-none" id="spinner">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+        <section id="spinner" class="d-none">
+            <div style="height: 400px" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- category size section -->
         <div class="mt-4" id="founded-size"></div>

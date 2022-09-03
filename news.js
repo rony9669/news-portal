@@ -33,20 +33,16 @@ const allCategoriesDetails = (category_id) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
         .then((response) => response.json())
         .then((json) => displayCategoryDetails(json.data));
+    toggleSpinner(true);
 };
 
 const displayCategoryDetails = (data) => {
-    // console.log(data);
     const foundedSize = document.getElementById("founded-size");
-    foundedSize.innerHTML = `<p class="text-center fw-bold"> ${data.length} items found for the category of </p>`;
-
-    const spinner = document.getElementById("spinner");
-    spinner.classList.remove("d-none");
+    foundedSize.innerHTML = `<p class="text-center fw-bold"> ${data.length} items found for the category</p>`;
 
     const categoryDetailsField = document.getElementById("category-info");
     categoryDetailsField.textContent = "";
 
-    // console.log(data[0].total_view);
     const totalView = data;
     totalView.sort((a, b) => {
         return b.total_view - a.total_view;
@@ -66,41 +62,41 @@ const displayCategoryDetails = (data) => {
         // console.log(_id);
 
         const { name, img } = author;
-        const showDetailsLimit = details.slice(0, 500).concat("...");
+        const showDetailsLimit = details.slice(0, 200).concat("...");
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card mb-3">
                 <div class="row ">
-                    <div class="col-md-4">
-                        <img src="${
-                          thumbnail_url ? thumbnail_url : "No data Found"
-                        } : No image Found" class="img-fluid rounded-start" alt="..." />
+                    <div class="col-md-3">
+                            <img src="${
+                              thumbnail_url ? thumbnail_url : "No data Found"
+                            } : No image Found" class="img-fluid rounded-start" alt="..."  />
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="card-body">
                             <h5 class="card-title">${title}</h5>
                             <p class="card-text">
                                 ${showDetailsLimit}
                             </p>
-                            <div class="d-flex justify-content-between" ">
-                            <div>
-                                <img src="${
-                                  img ? img : "No data Found"
-                                }" width="45 " alt="... " class="rounded img-fluid d-inline-block align-middle " alt="... " />
+                            <div class="d-flex justify-content-between mt-5" ">
+                                <div>
+                                    <img src="${
+                                      img ? img : "No data Found"
+                                    }" width="45" alt="..." class="rounded img-fluid d-inline-block align-middle" alt="..." />
 
-                                <span class="fw-bold ">${
-                                  name ? name : "No Name Found"
-                                }</span>
-                            </div>
-                            <div>
-                                <img src="./image/view.jpg " width="45 " alt="... ">
-                                <span>${
-                                  total_view ? total_view : "No data Found"
-                                }</span>
-                            </div>
-                            <div>
-                            <button href="#" onClick="allCategoriesFullDetails(('${_id}'))" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
-                            </div>
+                                    <span class="fw-bold ">${
+                                      name ? name : "No Name Found"
+                                    }</span>
+                                </div>
+                                <div>
+                                    <img src="./image/view.jpg " width="45 " alt="... ">
+                                    <span>${
+                                      total_view ? total_view : "No data Found"
+                                    }</span>
+                                </div>
+                                <div>
+                                <button href="#" onClick="allCategoriesFullDetails(('${_id}'))" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
+                                </div>
                                 
                         </div>
 
@@ -108,15 +104,27 @@ const displayCategoryDetails = (data) => {
             </div>
         `;
 
-        // console.log(category_name);
         categoryDetailsField.appendChild(div);
-        const spinnerItem = document.getElementById("spinner");
-        spinnerItem.classList.add("d-none");
-        // let id = allCategoriesFullDetails(_id);
-        // console.log(id);
     });
+    toggleSpinner(false);
 };
 
+/* -------------------------------------------------------------------------- */
+/*                               spinner section                              */
+/* -------------------------------------------------------------------------- */
+
+const toggleSpinner = (isLoading) => {
+    const loaderSection = document.getElementById("spinner");
+    if (isLoading) {
+        loaderSection.classList.remove("d-none");
+    } else {
+        loaderSection.classList.add("d-none");
+    }
+};
+
+/* -------------------------------------------------------------------------- */
+/*                              Modal Information                             */
+/* -------------------------------------------------------------------------- */
 const allCategoriesFullDetails = (news_id) => {
     fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
         .then((response) => response.json())
@@ -157,22 +165,6 @@ const displayCategoryFullDetails = (data) => {
 
         newsDetails.appendChild(div);
     });
-};
-
-// accordion section
-
-var count = 0;
-var btn = document.getElementById("blog-section");
-
-btn.onclick = function() {
-    count++;
-    if (count % 2 === 0) {
-        const accordion = document.getElementById("accordion-section");
-        accordion.classList.add("d-none");
-    } else {
-        const accordion = document.getElementById("accordion-section");
-        accordion.classList.remove("d-none");
-    }
 };
 
 // allCategories(08);
