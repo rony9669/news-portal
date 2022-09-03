@@ -1,0 +1,7 @@
+#category {
+    color: red;
+}
+
+#category:focus {
+    color: rgb(50, 12, 220);
+}
