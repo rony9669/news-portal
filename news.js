@@ -21,12 +21,8 @@ const displayCategory = allCategories().then((data) => {
         
         `;
 
-        // const idLength = Object.keys(category_id).length;
-        // console.log(idLength);
-
         categoryField.appendChild(div);
     });
-    // console.log(categoryField);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -42,7 +38,7 @@ const allCategoriesDetails = (category_id) => {
 const displayCategoryDetails = (data) => {
     // console.log(data);
     const foundedSize = document.getElementById("founded-size");
-    foundedSize.innerHTML = `<p class="text-center"> ${data.length} items found for the category of   </p>`;
+    foundedSize.innerHTML = `<p class="text-center fw-bold"> ${data.length} items found for the category of </p>`;
 
     const spinner = document.getElementById("spinner");
     spinner.classList.remove("d-none");
@@ -138,9 +134,9 @@ const displayCategoryFullDetails = (data) => {
         // console.log(title);
         const newsTitle = document.getElementById("newsDetailsModalLabel");
 
-        newsTitle.innerHTML = ` <div class="fw-bold">Title: ${
+        newsTitle.innerHTML = `<div class="fw-bold">Title: ${
       title ? title : "No Title found"
-    }</div> `;
+    }</div>`;
 
         newsDetails.textContent = "";
 
@@ -164,11 +160,20 @@ const displayCategoryFullDetails = (data) => {
 };
 
 // accordion section
-const blogSection = document.getElementById("blog-section");
-blogSection.addEventListener("click", function() {
-    const accordion = document.getElementById("accordion-section");
-    accordion.classList.remove("d-none");
-});
+
+var count = 0;
+var btn = document.getElementById("blog-section");
+
+btn.onclick = function() {
+    count++;
+    if (count % 2 === 0) {
+        const accordion = document.getElementById("accordion-section");
+        accordion.classList.add("d-none");
+    } else {
+        const accordion = document.getElementById("accordion-section");
+        accordion.classList.remove("d-none");
+    }
+};
 
 // allCategories(08);
 
