@@ -163,6 +163,13 @@ const displayCategoryFullDetails = (data) => {
     });
 };
 
+// accordion section
+const blogSection = document.getElementById("blog-section");
+blogSection.addEventListener("click", function() {
+    const accordion = document.getElementById("accordion-section");
+    accordion.classList.remove("d-none");
+});
+
 // allCategories(08);
 
-displayCategory(08);
+// displayCategory(08);
