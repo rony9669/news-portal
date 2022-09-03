@@ -68,12 +68,12 @@ const displayCategoryDetails = (data) => {
         div.innerHTML = `
         <div class="card mb-3">
                 <div class="row ">
-                    <div class="col-lg-4  col-md-6 col-sm-12">
+                    <div class="col-lg-6  col-md-12 col-sm-12">
                             <img src="${
                               image_url ? image_url : "No Data"
                             } : No image Found" class="img-fluid" alt="..."  />
                     </div>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="card-body">
                             <h5 class="card-title">${title}</h5>
                             <p class="card-text">
@@ -84,19 +84,21 @@ const displayCategoryDetails = (data) => {
                                     <img src="${
                                       img ? img : "No Data"
                                     }" width="45" alt="..." class="rounded img-fluid d-inline-block align-middle" alt="..." />
-
                                     <span class="fw-bold ">${
                                       name ? name : "No Name"
-                                    }</span>
+                                    }</span> 
+                                    
                                 </div>
-                                <div>
-                                    <img src="./image/view.jpg " width="45 " alt="... ">
+                                <div  style="
+                                padding-top: 12px;
+                            ">
+                                <span class="pt-5"><i class="fa-regular fa-eye"></i></span>
                                     <span>${
                                       total_view ? total_view : "No Data"
                                     }</span>
                                 </div>
                                 <div>
-                                <button href="#" onClick="allCategoriesFullDetails(('${_id}'))" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
+                                <button href="#" onClick="allCategoriesFullDetails(('${_id}'))" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
                                 </div> 
                         </div>
                 </div>

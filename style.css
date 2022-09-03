@@ -1,0 +1,8 @@
+@media only screen and (min-device-width: 320px) and (max-device-width: 424px) {
+    .sort-view {
+        margin-bottom: 5px;
+    }
+    .trending-item {
+        padding-left: 70px;
+    }
+}
