@@ -7,15 +7,6 @@ const allCategories = async() => {
     return finalData;
     // return data;
 };
-// allCategories().then((data) => {
-//     console.log(data.data.news_category);
-// });
-
-// const allCategories = () => {
-//     fetch("https://openapi.programming-hero.com/api/news/categories")
-//         .then((response) => response.json())
-//         .then((json) => displayCategory(json.data.news_category));
-// };
 
 const displayCategory = allCategories().then((data) => {
     // console.log(data);
@@ -35,7 +26,12 @@ const displayCategory = allCategories().then((data) => {
 
         categoryField.appendChild(div);
     });
+    // console.log(categoryField);
 });
+
+/* -------------------------------------------------------------------------- */
+/*                          category details section                          */
+/* -------------------------------------------------------------------------- */
 
 const allCategoriesDetails = (category_id) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
@@ -44,20 +40,28 @@ const allCategoriesDetails = (category_id) => {
 };
 
 const displayCategoryDetails = (data) => {
-    // console.log(allCategories().then(data.data));
+    // console.log(data);
     const foundedSize = document.getElementById("founded-size");
     foundedSize.innerHTML = `<p class="text-center"> ${data.length} items found for the category of   </p>`;
 
     const spinner = document.getElementById("spinner");
     spinner.classList.remove("d-none");
+
     const categoryDetailsField = document.getElementById("category-info");
     categoryDetailsField.textContent = "";
 
-    data.forEach((elements) => {
-        // console.log(elements.category_id);
+    // console.log(data[0].total_view);
+    const totalView = data;
+    totalView.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
 
+
+    data.forEach((elements) => {
         const { title, total_view, thumbnail_url, details, author, category_id } =
         elements;
+
+        // console.log(category_id);
 
         const { name, img } = author;
         const showDetailsLimit = details.slice(0, 500).concat("...");
@@ -82,7 +86,9 @@ const displayCategoryDetails = (data) => {
                                   img ? img : "No data Found"
                                 }" width="45 " alt="... " class="rounded d-inline-block align-middle " alt="... " />
 
-                                <span class="fw-bold ">${name}</span>
+                                <span class="fw-bold ">${
+                                  name ? name : "No Name Found"
+                                }</span>
                             </div>
                             <div>
                                 <img src="./image/view.jpg " width="45 " alt="... ">
