@@ -74,12 +74,12 @@ const displayCategoryDetails = (data) => {
         div.innerHTML = `
         <div class="card mb-3">
                 <div class="row ">
-                    <div class="col-lg-6   col-md-12  col-sm-12">
+                    <div class="col-lg-3   col-md-12  col-sm-12">
                             <img src="${
-                              image_url ? image_url : "No Data"
+                              thumbnail_url ? thumbnail_url : "No Data"
                             } : No image Found" class="img-fluid main-image" alt="..."  />
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-lg-9 col-md-12 col-sm-12">
                         <div class="card-body">
                             <h5 class="card-title">${title}</h5>
                             <p class="card-text">
