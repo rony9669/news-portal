@@ -1,3 +1,9 @@
+@media only screen and (min-device-width: 992px) and (max-device-width: 1200px) {
+    .main-image {
+        padding-top: 25px;
+    }
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 424px) {
     .sort-view {
         margin-bottom: 5px;

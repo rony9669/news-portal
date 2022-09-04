@@ -30,11 +30,17 @@ const displayCategory = allCategories().then((data) => {
 /*                          category details section                          */
 /* -------------------------------------------------------------------------- */
 
-const allCategoriesDetails = (category_id) => {
-    fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
-        .then((response) => response.json())
-        .then((json) => displayCategoryDetails(json.data));
-    toggleSpinner(true);
+const allCategoriesDetails = async(category_id) => {
+    try {
+        fetch(
+                `https://openapi.programming-hero.com/api/news/category/${category_id}`
+            )
+            .then((response) => response.json())
+            .then((json) => displayCategoryDetails(json.data));
+        toggleSpinner(true);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const displayCategoryDetails = (data) => {
@@ -68,10 +74,10 @@ const displayCategoryDetails = (data) => {
         div.innerHTML = `
         <div class="card mb-3">
                 <div class="row ">
-                    <div class="col-lg-6 pt-md-3  col-md-12 col-sm-12">
+                    <div class="col-lg-6   col-md-12  col-sm-12">
                             <img src="${
                               image_url ? image_url : "No Data"
-                            } : No image Found" class="img-fluid" alt="..."  />
+                            } : No image Found" class="img-fluid main-image" alt="..."  />
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="card-body">
@@ -126,10 +132,14 @@ const toggleSpinner = (isLoading) => {
 /* -------------------------------------------------------------------------- */
 /*                              Modal Information                             */
 /* -------------------------------------------------------------------------- */
-const allCategoriesFullDetails = (news_id) => {
-    fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
-        .then((response) => response.json())
-        .then((json) => displayCategoryFullDetails(json.data));
+const allCategoriesFullDetails = async(news_id) => {
+    try {
+        fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
+            .then((response) => response.json())
+            .then((json) => displayCategoryFullDetails(json.data));
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const displayCategoryFullDetails = (data) => {
